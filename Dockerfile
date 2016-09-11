@@ -13,11 +13,6 @@ RUN apt-get update \
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 #ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
-# Install/prepare Ansible
-RUN mkdir -p /etc/ansible/
-RUN mkdir -p /opt/ansible/roles
-RUN printf '[local]\nlocalhost ansible_connection=local\n' > /etc/ansible/hosts
-
 RUN add-apt-repository -y ppa:ansible/ansible \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -26,5 +21,8 @@ RUN add-apt-repository -y ppa:ansible/ansible \
   && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
   && apt-get clean
 
-COPY initctl_faker .
-RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
+# Install/prepare Ansible
+RUN mkdir -p /etc/ansible/
+RUN mkdir -p /opt/ansible/roles
+RUN rm -f /opt/ansible/hosts
+RUN printf '[local]\nlocalhost ansible_connection=local\n' > /etc/ansible/hosts
