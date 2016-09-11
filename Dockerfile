@@ -1,4 +1,3 @@
-# Latest version of centos
 FROM ubuntu:16.04
 MAINTAINER Ernestas Poskus <hierco@gmail.com>
 
