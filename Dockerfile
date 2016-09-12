@@ -7,6 +7,7 @@ RUN apt-get update \
        python-software-properties \
        software-properties-common \
        rsyslog systemd systemd-cron sudo \
+       iproute \
     && rm -Rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
