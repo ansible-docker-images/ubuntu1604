@@ -14,3 +14,6 @@ script:
   - docker inspect tested_image
   - docker inspect tested_image | grep -i 'networksettings'
   - docker stop tested_image
+
+notifications:
+  webhooks: https://hooks.microbadger.com/images/ernestasposkus/ubuntu1604/egwr4NTBN7BfkNzcyp0Vy_X4tcI=
